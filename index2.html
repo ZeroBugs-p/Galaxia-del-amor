@@ -94,46 +94,9 @@
   <div class="time" id="time">0:00 / 0:00</div>
 </div>
 
-<audio id="audio" loop crossorigin="anonymous"></audio>
-
-<!-- Carga dinámica: intenta servir desde CDN (jsDelivr) para que el usuario no necesite el MP3 local.
-     Para que esto funcione, sube el archivo a tu repositorio GitHub `ZeroBugs-p/Galaxia-del-Amor` en la rama `main`.
-     jsDelivr URL ejemplo (automática):
-     https://cdn.jsdelivr.net/gh/ZeroBugs-p/Galaxia-del-Amor@main/Musica/Taylor%20Swift%20-%20Enchanted%20Taylor%27s%20Version%20Sub.%20Espa%C3%B1ol%20+%20Lyrics.mp3
--->
-<script>
-(function(){
-  const audioEl=document.getElementById('audio');
-  const owner='ZeroBugs-p', repo='Galaxia-del-Amor', branch='main';
-  // Para evitar problemas de encoding en la URL publica, usa un nombre simple en el repositorio:
-  // Musica/enchanted.mp3
-  // Ejecuta los comandos git abajo para renombrar/subir el MP3 al repo y que jsDelivr lo sirva.
-  const filePath='Musica/enchanted.mp3';
-  const encodedPath=encodeURIComponent(filePath).replace(/%2F/g,'/');
-  const remoteURL=`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${branch}/${encodedPath}`;
-  const localURL='Musica/Taylor Swift - Enchanted Taylor\'s Version Sub. Español + Lyrics.mp3';
-  fetch(remoteURL, {method:'HEAD'}).then(r=>{
-    if(r.ok){ audioEl.src=remoteURL; }
-    else{ audioEl.src=localURL; }
-    audioEl.load();
-    audioEl.play().catch(()=>{});
-  }).catch(()=>{
-    audioEl.src=localURL; audioEl.load();
-  });
-})();
-</script>
-
-<!--
-Comandos sugeridos (ejecutar en tu repositorio local):
-
-git mv "Musica/Taylor Swift - Enchanted Taylor's Version Sub. Español + Lyrics.mp3" Musica/enchanted.mp3
-git add Musica/enchanted.mp3
-git commit -m "Add enchanted.mp3 for jsDelivr hosting"
-git push origin main
-
-Después de pushear, la URL pública será similar a:
-https://cdn.jsdelivr.net/gh/ZeroBugs-p/Galaxia-del-Amor@main/Musica/enchanted.mp3
--->
+<audio id="audio" loop autoplay>
+  <source src="Musica/Taylor Swift - Enchanted Taylor's Version Sub. Español + Lyrics.mp3" type="audio/mpeg">
+</audio>
 
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.min.js"></script>
